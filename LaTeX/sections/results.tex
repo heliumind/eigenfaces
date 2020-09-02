@@ -5,13 +5,13 @@ First, the extracted features of both methods performed on the Yale Face
 Database B will be compared. Finally, these diagnostic features' class
 recognition ability will be checked in numerical experiments. In the case of
 PCA, a support vector machine (SVM) is used for classification. The experiments
-have been conducted using sci-kitlearn \cite{sk} library in Python. I
-have adapted Facebook DeepFace model implementation from
+have been conducted using sci-kitlearn \cite{sk} library in Python. I have
+adapted Facebook DeepFace model implementation from
 \cite{serengil2017tensorflow101}, which uses Keras \cite{chollet2015keras} and
-Tensorflow \cite{tensorflow2015-whitepaper} as its backend. In the autoencoder's
-case, the extracted feautres will be forwarded to a softmax classifier,
-consisting of one fully-connected layer and softmax activation function with 38,
-accounting the amount of classes.
+Tensorflow \cite{tensorflow} as its backend. In the autoencoder's case, the
+extracted feautres will be forwarded to a softmax classifier, consisting of one
+fully-connected layer and softmax activation function with 38, accounting the
+amount of classes.
 
 \begin{figure}[h]
   \begin{subfigure}{}
@@ -63,6 +63,14 @@ and $\gamma=0.01$. In the case of the autoencoder, the softmax classifier was
 trained for 50 epochs during each the model's performance was validated on the
 crossentropy loss and weights optimized with ADAM.
 
+The experimentation has been repeated 10 times at random choice of learning and
+testing data. The models' testing performance of classifying 38 individuals 
+are presented in Table \ref{scores}. These data correspond to the samples not 
+taking part in learning. The results of PCA and autoencoder applications have 
+been obtained for the same data base \cite{yalefaceB}\cite{yalefaceBcropped} and
+represent the average accuracy followed by standard deviation obtained in all 
+runs.
+
 \begin{table}[h]
   \caption{The average accuracy of face recognition for 38 classes of data (persons) obtained at application of autoencoder and pca preprocessing}
   \begin{center}
@@ -70,9 +78,34 @@ crossentropy loss and weights optimized with ADAM.
   \hline
   \textbf{Metric} & \textbf{PCA} & \textbf{Autoencoder} \\
   \hline
-  Accuracy & 92.60\%$\pm$0.99\% & \\
+  Accuracy & 92.60\%$\pm$0.99\% & 94.94\%$\pm$0.50\%\\
   \hline
   \end{tabular}
   \label{scores}
   \end{center}
 \end{table}
+
+As expected, higher quality features result in better general facial recognition
+performance. Note that although the autoencoder has not been trained on the Yale
+Face Dataset at all, it still managed to outperform the PCA. This suggests that
+underlaying layers of the CNN have successfully found encoding of human faces.
+To further enhance the autoencoder's accuracy, one could train it with the
+actual dataset instead. For qualitative evaluation of the two approaches, the
+first 12 images and the classification result of the test set on one run are
+included in appendix Fig. \ref{appendix:PCAgallery}
+\ref{appendix:Encodergallery}. PCA fails at recognizing very dark pictures,
+humans would not even be able to distinguish a person from. On the other hand,
+the autoencoder was able recognizing these beforementioned dark images.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\columnwidth]{EncoderConfusion.pdf}
+  \caption{The confusion matrix of first 20 classes in face recognition at application of autoencoder}
+  \label{confusion}
+\end{figure}
+
+Fig. \ref{confusion} depicts the truncated confusion matrix one run
+of the autoencoder solution in recognition of 38 classes in data. Due to brevity
+only the first 20 classes are plotted. We can see only scarce off-diagonal
+elements which are different from zero. For comparison the full confustion
+matrix for PCA is included in appendix Fig. \ref{appendix:PCAconfusion}.
