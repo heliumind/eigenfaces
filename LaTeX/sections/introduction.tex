@@ -1,0 +1,49 @@
+\section{Introduction}
+
+Tradional approaches to human identification such as PIN numbers, tokens and
+passwords used in magnetic credit cards are considered obsolete these days by
+the ease in which they can be circumvented. Biometrics comes in as a solution to
+overcoming traditional identification techniques, since biological
+characteristics can not be forged. Among the physical characteristics of a human
+being the face is the most used modality. It has a good acceptance in
+recognition systems and since the emergence of photography, government entities
+and private organizations have been maintaining databases with photographs of
+individuals for their personal identification, for documents such as passports
+or identification.
+
+Therefore, face recognition has gained a great deal of attention in the academic
+and industral communities. Many different methods used for solving this problem
+have been proposed and tested. From these it has become evident that one of the
+most important issue is feature extraction.  In the real word, face
+images are usually influenced by variances such as illuminations, posture,
+occlusions, and expressions. Additionally, there is fact that the difference from
+the same person would be much larger than that from different people. Thus,
+finding numerical discriptors which are effiecient and discriminant enough
+becomes a key to be able to perform facial recognition suffieciently well.
+
+Given a human face image, one could intuitively try to identify distinct
+features such as eyes, mouth, nose, chin measuring their relative position and
+utilizing these features in distinguising between different people. However,
+rather than performing facial recognition with the prior described
+\textit{Geometric-based} approach, one could leverage Machine Learning in
+representing the images as 2D arrays of grayscale intensities and trying to find
+underlying patterns in the data. 
+
+One of the first and well-known method used is the linear principal component
+analysis (PCA), also known as Eigenfaces, which was orignally proposed by
+Sirovich and Kirby \cite{sirovich1987low}, and then developed by Turk and
+Pentland \cite{turk1991eigenfaces}. Currently, deep learning including deep
+neural network has shown its great success on image expression. Here, I will
+investigate and compare the new approach to the facial recognition problem in
+the form of an autoencoder \cite{goodfellow2016deep}. Autoencoders are a
+nonlinear multilayer structure extracting the features of the image, step by
+step, in an unsupervised way. The succeeding hidden layers are responsible for
+the more and more compressed coding of the analyzed image. The last layer is the
+reduced size characterization of the input image, representing the discriminant
+features, that are used as the input attributes to the final recognizing system.
+
+The rest of the report is organized as follows. In Section 2, I will give a
+brief overview of PCA and Autoencoders with a focus on its application and
+interpretations for facial images. The experimental results conducted on a
+public database is given in Section 3. Finally, I draw a conclusion in Section
+4.

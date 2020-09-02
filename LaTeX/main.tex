@@ -1,0 +1,40 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{hyperref}
+
+\graphicspath{ {./figures/} }
+
+\begin{document}
+
+\title{Autoencoders versus PCA for Facial Recognition}
+
+\author{\IEEEauthorblockN{Henry He}
+\IEEEauthorblockA{\textit{Technical University of Munich} \\
+\textit{B.Sc. Electrical and Computer Engineering}\\
+henry.he@tum.de}
+}
+
+\maketitle
+
+\input{sections/introduction}
+\input{sections/pca}
+\input{sections/autoencoder}
+\input{sections/deepface}
+\input{sections/data}
+\input{sections/results}
+\input{sections/conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\newpage
+\appendix
+\input{sections/appendix}
+
+\end{document}
