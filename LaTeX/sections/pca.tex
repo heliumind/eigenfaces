@@ -1,48 +1,72 @@
 \section{Methods}
 \subsection{PCA for feature extraction}
 
-PCA is an orthogonal transformation of data converting a vector $\mathbf{x}$ of
+PCA is an orthogonal transformation of data, converting a vector $\mathbf{x}$ of
 a high-dimensional feature space into a vector $\mathbf{y}$ of a lower
 dimensional space. It does so by constructing an orthogonal subspace whose basis
 define directions which capture most of the given data's variance. The elements
 of the transformed vector $\mathbf{y}$ form the set of linearly uncorrelated
-variables called \textit{principal compenents}. Mathematically the PCA can be
-viewed as the statistical interpretation of the singular value decomposition
-(SVD), in which the decomposed matrix $\mathbf{X}$ is the mean substracted or
-centered data matrix.
+variables called \textit{principal components}. 
 
-Assuming the newly found basis is populated columnwise in a matrix $\mathbf{U}$,
-the PCA performs a projection of vector $\mathbf{x}$ into vector $\mathbf{y}$,
-which can be denoted by $\mathbf{y = UU^Tx}$. In PCA terminolgy, the columns of
-$\mathbf{U}$ are called \textit{principal axis} while the already mentioned
-\textit{principal components} are obatined by $\mathbf{U^Tx}$. The first
-principal axis represents the largest variance of the data and is equal to the
-eigenvectors belonging to the largest eigenvalue of the data's covariance
-matrix. The following columns represent the next variances, all arranged in
-decreasing order with respect to eigenvalues of the covariance matrix or the
-singular values of centered $\MakeButtonField{X}$. Thus, the PCA components
-arranged in the order according to their decreasing variance represent the most
-important statistical information contained in the original set of data. 
+Mathematically the PCA can be viewed as the statistical interpretation of the
+singular value decomposition (SVD): Given a data matrix
+$\mathbf{X}\in\mathbb{R}^{n\times m}$ a unique matrix decomposition exists:
+
+\begin{equation}
+  \mathbf{X} = \mathbf{U \Sigma V}^T,
+\end{equation}
+
+where $\mathbf{U}\in\mathbb{R}^{n\times n}$ and
+$\mathbf{V}\in\mathbb{R}^{m\times m}$ are orthonormal matrices, and
+$\mathbf{\Sigma}\in \mathbb{R}^{n\times m}$ contains the \textit{singular
+values} $\sigma_i$ on its diagonal. Both $\mathbf{U}$ and $\mathbf{V}^T$
+resemble an orthonormal basis for the column and row space of $\mathbf{X}$,
+respectively. Assuming the columns of X comprise of data entries $\mathbf{x}$,
+$\mathbf{U}$ forms the newly found basis.  
+
+In PCA terminology, the columns of $\mathbf{U}$ are called \textit{principal
+axis} while the already mentioned \textit{principal components} are obtained by
+$\mathbf{U^Tx}$. The first principal axis represents the largest variance of the
+data and is equal to the eigenvectors belonging to the largest eigenvalue of the
+data's covariance matrix \footnotemark. The following columns represent the next
+variances, all arranged in decreasing order with respect to eigenvalues of the
+covariance matrix or the singular values of $\mathbf{X}$. Thus, the PCA
+components, arranged in the order according to their decreasing variance,
+represent the most important statistical information contained in the original
+set of data. 
+
+\footnotetext{Note that mathematically correct, the covariance matrix is defined
+on the mean-subtracted or centered data matrix $\bar{\mathbf{X}}$}
 
 \begin{figure}[ht]  
   \centering
   \includegraphics[width=\columnwidth]{singularValues.pdf}
   \caption{(left) Singular values $\sigma_k$ (right) Cumulative energy /
-  variance captured by the first $r$ principal compenents in the Yale Face B
+  variance captured by the first $r$ principal components in the Yale Face B
   Database}
   \label{sv}
 \end{figure}
 
-By limiting the number of principal components to the most important
-eigenvalues, one achieves reduction of dimenstionality of data. As seen in Fig.
-\ref{sv} it is possible to plot the singular values versus the number of
-components. The amount of variance captured in the first $r$ modes can be
-expressed by $\frac{\sum\limits_{k=1}^{r}{\sigma_k}}{\sum{\sigma_k}}$. This
-gives a guideline on how many components to keep in order to capture a certain
-amount of variance.
+By limiting the number of principal components, which translates to truncating
+$\mathbf{U}$ to $\tilde{\mathbf{U}}$, and keeping the most important
+eigenvalues, one achieves dimensionality reduction. Given an orthogonal basis of
+the so found subspace $\tilde{\mathbf{U}}$, an arbitrary vector can be projected
+to the lower dimensional space by means of a projection matrix
+$\mathbf{\tilde{U}\tilde{U}^T}$ denoted in Eq. (\ref{eq:projection}). As seen in
+Fig. \ref{sv} it is possible to plot the singular values versus the number of
+components. The amount of variance captured in the first $r$ modes is given by
+Eq. (\ref{eq:energy}).
 
-In Face recognition, the PCA or SVD decomposes the data into very intuitively
-intrepretable components. Applied to a large library of facial images, the
+\begin{gather}
+ \textrm{``Cumulative energy of data''} = \frac{\sum\limits_{k=1}^{r}{\sigma_k}}{\sum{\sigma_k}} \label{eq:energy} \\
+ \mathbf{y = \tilde{U}\tilde{U}^Tx} \label{eq:projection}
+\end{gather}
+
+This gives a guideline on how many components to keep in order to capture a
+certain amount of variance.
+
+In the context of FR, the PCA or SVD decomposes the data into very intuitively
+interpretable components. Applied to a large library of facial images, the
 principal axis are the so called \textit{eigenfaces}. They are the basis of the
 newly computed coordinate system with which one can reconstruct old or even
 generate completely new faces, meaning every face image in the original set of
@@ -64,7 +88,7 @@ useful tool for facial recognition and classification. A demonstration of PCA's
 classification ability is shown in Fig. \ref{cluster}. For facial feature
 extraction I will be using a chosen amount of principal components,
 interpretable as the weights of the eigenfaces. These signals create the
-patterns which are characteristic for the particular class/indviudal and
+patterns which are characteristic for the particular class/individual and
 represent the coding of the image. They will serve as the input attributes to
 the output classifier.
 
