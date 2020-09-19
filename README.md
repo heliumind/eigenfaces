@@ -43,14 +43,14 @@ in your python environment:
 ## Report
 
 The accompanying report is automatically built on every push with _GitHub
-actions_ and can be found as an _Artifact_ from the latest build
+actions_ and can be found as `Report.pdf` from the latest build
 [here](https://github.com/heliumind/eigenfaces/actions).
 
 ## Acknowledgments
-This my final project for the lab course _Python for Engineering Data Analysis -
-from Machine Learning to Visualization_ offered by the Associate Professorship
-Simulation of Nanosystems for Energy Conversion at the Technical University of
-Munich.
+This is my final project for the lab course _Python for Engineering Data
+Analysis - from Machine Learning to Visualization_ offered by the Associate
+Professorship Simulation of Nanosystems for Energy Conversion at the Technical
+University of Munich.
 
 I want to thank everyone responsible for this course, giving me a very hands-on
 introduction to Data Science and Machine Learning.
