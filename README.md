@@ -42,9 +42,10 @@ in your python environment:
 
 ## Report
 
-The accompanying report is automatically built on every push with _GitHub
-actions_ and can be found as `Report.pdf` from the latest build
-[here](https://github.com/heliumind/eigenfaces/actions).
+[![Download
+PDF](https://img.shields.io/badge/Download-PDF-green)](https://github.com/heliumind/eigenfaces/releases/download/v1.0/Report_PyData_He.pdf)
+
+The accompanying report is automatically built in the CI pipeline using GitHub Actions.
 
 ## Acknowledgments
 This is my final project for the lab course _Python for Engineering Data
