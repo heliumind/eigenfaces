@@ -23,7 +23,7 @@ preprocessed version is already included in the repository.
 
 For optimal insights in the algorithms (especially PCA), the notebooks should be
 viewed in the following order:
-1. [`yalesfaces.ipynb`](code/yalefaces.ipynb): Get an overview on the
+1. [`yalefaces.ipynb`](code/yalefaces.ipynb): Get an overview on the
    dataset's distribution
 2. [`eigenfaces.ipynb`](code/eigenfaces.ipynb): Explore how PCA decomposes face
    images into eigenfaces and understand their intuitive meaning
